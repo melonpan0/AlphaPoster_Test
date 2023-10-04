@@ -5,34 +5,33 @@ jobs:
     permissions:
       contents: write
     runs-on: ubuntu-latest
-      outputs:
-        updated: ${{ steps.update.outputs.updated }}
-      steps:
-        - name: checkout main branch
-          uses: actions/checkout@v3
+    outputs:
+      updated: ${{ steps.update.outputs.updated }}
+    steps:
+      - name: checkout main branch
+        uses: actions/checkout@v3
+      - name: Set Download ID Env.
+        run: echo "GoogleDriveID=$(cat GoogleDriveID.txt | head -n 1)" >> $GITHUB_ENV
 
-        - name: Set Download ID Env.
-          run: echo "GoogleDriveID=$(cat GoogleDriveID.txt | head -n 1)" >> $GITHUB_ENV
-
-        - name: update Poster
-          id: update
-          run: wget "https://drive.google.com/uc?export=download&id=${{ env.GoogleDriveID }}" -O ${GITHUB_OUTPUT}/AlphaPoster-v1.png
+      - name: update Poster
+        id: update
+        run: wget "https://drive.google.com/uc?export=download&id=${{ env.GoogleDriveID }}" -O ${{ GITHUB_OUTPUT }}/AlphaPoster-v1.png
 
 
-        - name: Upload GitHub Pages
-          uses: actions/upload-pages-artifact@v1
-          with:
-            path: _site/
+      - name: Upload GitHub Pages
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: _site/
 
-    deploy:
-      permissions:
-        pages: write
-        id-token: write
-      runs-on: ubuntu-latest
-      environment:
-        name: github-pages
-        url: ${{ steps.deployment.outputs.page_url }}
+  deploy:
+    permissions:
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
-      steps:
-        - name: Deploy to GitHub Pages
-          uses: actions/deploy-pages@v2
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v2
