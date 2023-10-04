@@ -10,12 +10,14 @@ jobs:
     steps:
       - name: checkout main branch
         uses: actions/checkout@v3
+      - name: Create site page dir.
+        run: mkdir -p ./_site
       - name: Set Download ID Env.
         run: echo "GoogleDriveID=$(cat GoogleDriveID.txt | head -n 1)" >> $GITHUB_ENV
 
       - name: update Poster
         id: update
-        run: wget "https://drive.google.com/uc?export=download&id=${{ env.GoogleDriveID }}" -O AlphaPoster-v1.png
+        run: wget "https://drive.google.com/uc?export=download&id=${{ env.GoogleDriveID }}" -O ./_site/AlphaPoster-v1.png
 
 
       - name: Upload GitHub Pages
