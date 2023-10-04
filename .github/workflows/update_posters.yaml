@@ -15,7 +15,7 @@ jobs:
 
       - name: update Poster
         id: update
-        run: wget "https://drive.google.com/uc?export=download&id=${{ env.GoogleDriveID }}" -O ${{ env.GITHUB_OUTPUT }}/AlphaPoster-v1.png
+        run: wget "https://drive.google.com/uc?export=download&id=${{ env.GoogleDriveID }}" -O AlphaPoster-v1.png
 
 
       - name: Upload GitHub Pages
