@@ -1,5 +1,5 @@
 name: "Update Poster"
-on: [workflow_dispatch]
+on: [push, workflow_dispatch]
 jobs:
   update-poster:
     permissions:
@@ -10,15 +10,9 @@ jobs:
     steps:
       - name: checkout main branch
         uses: actions/checkout@v3
-      - name: Create site page dir.
-        run: mkdir -p ./_site
-      - name: Set Download ID Env.
-        run: echo "GoogleDriveID=$(cat GoogleDriveID.txt | head -n 1)" >> $GITHUB_ENV
 
-      - name: update Poster
-        id: update
-        run: wget "https://drive.google.com/uc?export=download&id=${{ env.GoogleDriveID }}" -O ./_site/AlphaPoster-v1.png
-
+      - name: Download Files.
+        run: bash downloader.sh downloadlist.csv
 
       - name: Upload GitHub Pages
         uses: actions/upload-pages-artifact@v1
