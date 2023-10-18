@@ -1,14 +1,15 @@
-name: "Update Poster"
+name: "Update Posters"
 on: [push, workflow_dispatch]
+
 jobs:
-  update-poster:
+  update-posters:
     permissions:
       contents: write
     runs-on: ubuntu-latest
     outputs:
       updated: ${{ steps.update.outputs.updated }}
     steps:
-      - name: checkout main branch
+      - name: Checkout main branch
         uses: actions/checkout@v3
 
       - name: Download Files.
