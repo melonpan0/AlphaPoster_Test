@@ -29,4 +29,5 @@ GitHub Actionsから、"Update Poster"を実行します。
 ## Lisense
 
 ソースコードライセンス: MIT License
+
 GitHub Pagesに表示される画像ライセンス: 各画像のオリジナルのライセンス
