@@ -1,4 +1,4 @@
-C PosterSystem
+# VRC PosterSystem
 
 ## What is This
 
