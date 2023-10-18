@@ -21,7 +21,7 @@ jobs:
           path: _site/
 
   deploy:
-    needs: update-poster
+    needs: update-posters
     permissions:
       pages: write
       id-token: write
